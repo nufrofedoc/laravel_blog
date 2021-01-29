@@ -1,3 +1,3 @@
-# Blog in Laravel
+# Blog in Laravel 8
 
-Let's get started to incredible journey.
+Let's get started to incredible journey in framework laravel.
