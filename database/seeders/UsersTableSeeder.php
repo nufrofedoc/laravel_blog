@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,7 +18,7 @@ class UsersTableSeeder extends Seeder
 	        [
 		        'name'     => 'No author',
 		        'email'    => 'author_unknown@co.ro',
-		        'password' => bcrypt(str_random(16)),
+		        'password' => bcrypt(Str::random(16)),
             ],
 	        [
 		        'name'     => 'Author',
