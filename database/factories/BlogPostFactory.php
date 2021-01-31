@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Models\BlogPost;
+use App\Models\BlogPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
