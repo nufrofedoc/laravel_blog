@@ -34,7 +34,9 @@ class PostController extends BaseController
      */
     public function index()
     {
-        return view('blog.admin.posts.index');
+        $paginator = $this->blogPostRepository->getAllWithPaginate();
+
+        return view('blog.admin.posts.index', compact('paginator'));
     }
 
     /**
@@ -44,12 +46,7 @@ class PostController extends BaseController
      */
     public function create()
     {
-        $item = new BlogCategory();
-        $categoryList
-            = $this->blogCategoryRepository->getForComboBox();
-
-        return view('blog.admin.categories.edit',
-                    compact('item', 'categoryList'));
+        dd(__METHOD__);
     }
 
     /**
@@ -58,45 +55,31 @@ class PostController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BlogCategoryCreateRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->input();
-        if (empty($data['slug'])) {
-            $data['slug'] = str_slug($data['title']);
-        }
+        dd(__METHOD__, $request->all());
+    }
 
-        $item = new BlogCategory($data);
-        $item->save();
-
-        if ($item) {
-            return redirect()->route('blog.admin.categories.edit', [$item->id])
-                ->with(['success' => 'Success']);
-        } else {
-            return back()->withErrors(['msg' => 'Error'])
-                ->withInput();
-        }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        dd(__METHOD__, $id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @param  BlogCategoryRepository $categoryRepository
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $item = $this->blogCategoryRepository->getEdit($id);
-
-        if (empty($item)) {
-            abort(404);
-        }
-
-        $categoryList
-            = $this->blogCategoryRepository->getForComboBox();
-
-        return view('blog.admin.categories.edit',
-                    compact('item', 'categoryList'));
+        dd(__METHOD__, $id);
     }
 
     /**
@@ -106,33 +89,19 @@ class PostController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BlogCategoryUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $item = $this->blogCategoryRepository->getEdit($id);
+        dd(__METHOD__, $request->all(), $id);
+    }
 
-        if (empty($item)) {
-            return back()
-                ->withErrors(['msg' => "Record id=[{$id}] haven't foud"])
-                ->withInput();
-        }
-
-        $data = $request->all();
-        if (empty($data['slug'])) {
-            $data['slug'] = str_slug($data['title']);
-        }
-
-        $result = $item
-                ->fill($data)
-                ->save();
-
-        if ($result) {
-            return redirect()
-                ->route('blog.admin.categories.edit', $item->id)
-                ->with(['success' => 'Success']);
-        } else {
-            return back()
-                ->withErrors(['msg' => 'Error'])
-                ->withInput();
-        }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        dd(__METHOD__, $id);
     }
 }
