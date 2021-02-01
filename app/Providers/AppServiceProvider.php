@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\BlogPost;
+use App\Models\BlogCategory;
+use App\Observers\BlogCategoryObserver;
+use App\Observers\BlogPostObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 
