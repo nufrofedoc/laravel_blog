@@ -49,4 +49,16 @@ class BlogPostRepository extends CoreRepository
 
         return $result;
     }
+
+    /**
+     * Get a model for editing in admin
+     *
+     * @param int $id
+     *
+     * @return Model
+     */
+    public function getEdit($id)
+    {
+        return $this->startConditions()->find($id);
+    }
 }
