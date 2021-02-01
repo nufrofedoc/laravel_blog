@@ -19,12 +19,12 @@ class BlogPostObserver
     }
 
     /**
-     * Handle the BlogPost "updated" event.
+     * Handle the BlogPost "updating" event.
      *
      * @param  \App\Models\BlogPost  $blogPost
      * @return void
      */
-    public function updated(BlogPost $blogPost)
+    public function updating(BlogPost $blogPost)
     {
         $this->setPublishedAt($blogPost);
 
