@@ -8,14 +8,20 @@ use Carbon\Carbon;
 class BlogPostObserver
 {
     /**
-     * Handle the BlogPost "created" event.
+     * Handle the BlogPost "creating" event.
      *
      * @param  \App\Models\BlogPost  $blogPost
      * @return void
      */
-    public function created(BlogPost $blogPost)
+    public function creating(BlogPost $blogPost)
     {
+        $this->setPublishedAt($blogPost);
 
+        $this->setSlug($blogPost);
+
+        $this->setHtml($blogPost);
+
+        $this->setUser($blogPost);
     }
 
     /**
@@ -54,6 +60,24 @@ class BlogPostObserver
         if (empty($blogPost->slug)) {
             $blogPost->slug = \Str::slug($blogPost->title);
         }
+    }
+
+    /**
+     * Setup a value to field content_html relative field content_raw.
+     *
+     * @param BlogPost $blogPost
+     */
+    protected function setHtml(BlogPost $blogPost)
+    {
+        if ($blogPost->isDirty('content_raw')) {
+            // TODO: generation markdown -> html
+            $blogPost->content_html = $blogPost->content_raw;
+        }
+    }
+
+    protected function setUser(BlogPost $blogPost)
+    {
+        $blogPost->user_id = auth()->id() ?? BlogPost::UNKNOWN_USER;
     }
 
     /**
