@@ -12,7 +12,7 @@ class BlogCategory extends Model
     /**
      * ID Root
      */
-    const ROOT = 1;
+    const ID = 1;
 
     protected $fillable = [
         'title',
@@ -53,7 +53,7 @@ class BlogCategory extends Model
      */
     public function isRoot()
     {
-        return $this->id === BlogCategory::ROOT;
+        return $this->id === BlogCategory::ID;
     }
 
     /**
