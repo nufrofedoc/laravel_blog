@@ -41,7 +41,7 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-        $item = new BlogCategory();
+        $item = BlogCategory::make();
         $categoryList
             = $this->blogCategoryRepository->getForComboBox();
 
@@ -59,7 +59,7 @@ class CategoryController extends BaseController
     {
         $data = $request->input();
 
-        $item = new BlogCategory($data);
+        $item = BlogCategory::create($data);
         $item->save();
 
         if ($item) {
