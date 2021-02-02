@@ -155,10 +155,10 @@ class PostController extends BaseController
     public function destroy($id)
     {
         // Soft delete
-        // $result = BlogPost::destroy($id);
+        $result = BlogPost::destroy($id);
 
         // Full delete from db
-        $result = BlogPost::find($id)->forceDelete();
+        // $result = BlogPost::find($id)->forceDelete();
 
         if ($result) {
             return redirect()
