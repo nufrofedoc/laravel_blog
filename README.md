@@ -2,7 +2,7 @@
 
 The project aims to learning new features in the laravel 8.
 
-### Requirements
+## Requirements
 
 - laravel ^8.0
 - php ^7.3|^8.0
@@ -17,6 +17,6 @@ Please make sure to update tests as appropriate.
 
 [Laravel](https://laravel.com/docs/8.x/releases)
 
-### License
+## License
 
 The Laravel framework is open-sourced software licensed under the MIT license.
